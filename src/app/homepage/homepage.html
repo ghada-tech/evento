@@ -1,18 +1,18 @@
-<header class="site-header">
+<header class="site-header" [class.sticky]="isSticky" [class.hidden]="isHidden">
   <div class="brand">
     <h1>Evento</h1>
   </div>
 
   <nav class="nav-desktop">
-    <a routerLink="/home">Accueil</a>
-    <a routerLink="/ateliers">Ateliers</a>
-    <a routerLink="/formations">Formations</a>
-    <a routerLink="/clubs">Clubs</a>
+    <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Accueil</a>
+    <a routerLink="/ateliers" routerLinkActive="active">Ateliers</a>
+    <a routerLink="/formations" routerLinkActive="active">Formations</a>
+    <a routerLink="/clubs" routerLinkActive="active">Clubs</a>
   </nav>
 
   <div class="header-actions">
     <button class="btn-user" (click)="openUserPopup()">Qui êtes-vous ?</button>
-    <button class="hamburger" aria-label="Menu" (click)="toggleNav()" [attr.aria-expanded]="navOpen">
+    <button class="hamburger" aria-label="Menu" (click)="toggleNav()" [attr.aria-expanded]="navOpen" aria-controls="mobile-navigation">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
@@ -20,11 +20,14 @@
   </div>
 
   <!-- Mobile nav overlay -->
-  <div class="mobile-nav" *ngIf="navOpen">
-    <a routerLink="/home" (click)="closeNav()">Accueil</a>
-    <a routerLink="/ateliers" (click)="closeNav()">Ateliers</a>
-    <a routerLink="/formations" (click)="closeNav()">Formations</a>
-    <a routerLink="/clubs" (click)="closeNav()">Clubs</a>
+  <div class="mobile-nav" id="mobile-navigation" *ngIf="navOpen" role="dialog" aria-modal="true">
+    <div class="mobile-nav-panel">
+    <button class="mobile-close" aria-label="Fermer le menu" (click)="closeNav()"><i class="fa-solid fa-xmark"></i></button>
+      <a routerLink="/home" (click)="closeNav()">Accueil</a>
+      <a routerLink="/ateliers" (click)="closeNav()">Ateliers</a>
+      <a routerLink="/formations" (click)="closeNav()">Formations</a>
+      <a routerLink="/clubs" (click)="closeNav()">Clubs</a>
+    </div>
   </div>
 </header>
 
@@ -53,113 +56,41 @@
 
   <img src="https://picsum.photos/600/400?school" alt="School" />
 </div>
-
-<!-- =======================
-     Ce Qui Vous Attend
-     ======================= -->
- 
-<!-- Tops Section -->
-<section class="tops-section">
-  <h2>Nos Tops</h2>
-
-  <div class="cards-container">
-
-    <div class="card" *ngFor="let item of tops">
-      <div class="card-tag">{{ item.category }}</div>
-
-      <img [src]="item.image" class="card-img" alt="Top Event">
-
-      <div class="card-content">
-        <div class="price">{{ item.price }}€</div>
-        <h3>{{ item.title }}</h3>
-        <p>{{ item.description }}</p>
-
-        <button class="btn-inscrire">S'inscrire</button>
-      </div>
-    </div>
-
+<!-- CE QUI VOUS ATTEND SECTION -->
+<section class="what-awaits themed-section">
+  <div class="section-header">
+    <span class="section-label">À Découvrir</span>
+    <h2>Ce Qui Vous Attend</h2>
   </div>
-</section>
-
-  <!-- Témoignages Section -->
-  <section class="temoignages-section">
-
-    <button class="label-btn">Ce Qu'ils Disent</button>
-    <h2>La Parole à Nos Participants</h2>
-
-    <div class="cards-container">
-
-      <div class="card" *ngFor="let t of temoignages">
-
-        <div class="avatar-wrapper">
-          <img [src]="t.image" class="avatar" alt="Avatar">
-        </div>
-
-        <h3>{{ t.name }}</h3>
-        <span class="role">{{ t.role }}</span>
-
-        <p class="message">
-          {{ t.message }}
-        </p>
-
-      </div>
-
-    </div>
-  </section>
-
-<section class="what-awaits">
-  <h2>Ce Qui Vous Attend</h2>
-
-  <div class="awaits-container">
-    
-    <!-- LEFT SIDE: TEXT CARDS -->
-    <div class="awaits-text">
-      <div class="await-card">
-          <span class="await-icon">🎨</span>
-          <h3>Ateliers</h3>
-        <p>
-          Libérez votre potentiel créatif avec nos sessions pratiques.
-          Apprenez de nouvelles compétences dans une ambiance conviviale et stimulante.
-        </p>
-      </div>
-
-      <div class="await-card">
-          <span class="await-icon">🎓</span>
-          <h3>Formations</h3>
-        <p>
-          Perfectionnez votre savoir-faire. Nos programmes sont conçus pour
-          vous propulser vers l'excellence académique et professionnelle.
-        </p>
-      </div>
-
-      <div class="await-card">
-          <span class="await-icon">🤝</span>
-          <h3>Clubs</h3>
-        <p>
-          Trouvez votre tribu ! Rejoignez des groupes passionnés par des centres
-          d’intérêt communs et vivez des expériences inoubliables.
-        </p>
-      </div>
-
-      <div class="await-card">
-          <span class="await-icon">📅</span>
-          <h3>Événements</h3>
-        <p>
-          Soyez au cœur de l'action. Ne manquez aucun rassemblement,
-          conférence ou fête qui anime notre communauté scolaire.
-        </p>
+  <div class="awaits-list">
+    <div class="await-item atelier">
+      <div class="icon-bubble atelier"><i class="fas fa-paint-brush"></i></div>
+      <div class="await-content">
+        <h3>Ateliers</h3>
+        <p>Libérez votre potentiel créatif avec nos sessions pratiques. Apprenez de nouvelles compétences dans une ambiance conviviale et stimulante.</p>
       </div>
     </div>
-
-    <!-- RIGHT SIDE: IMAGE -->
-    <div class="awaits-image">
-      <img src="https://images.unsplash.com/photo-1549116045-96b4e0f0f94b?q=80&w=1200" alt="Events" />
+    <div class="await-item formation">
+      <div class="icon-bubble formation"><i class="fas fa-graduation-cap"></i></div>
+      <div class="await-content">
+        <h3>Formations</h3>
+        <p>Perfectionnez votre savoir-faire. Nos programmes sont conçus pour vous propulser vers l'excellence académique et professionnelle.</p>
+      </div>
     </div>
-  </div>
-
-  <div class="section-actions">
-    <a class="btn primary" routerLink="/ateliers">Voir tous les ateliers</a>
-    <a class="btn outline" routerLink="/formations">Voir toutes les formations</a>
+    <div class="await-item club">
+      <div class="icon-bubble club"><i class="fas fa-users"></i></div>
+      <div class="await-content">
+        <h3>Clubs</h3>
+        <p>Trouvez votre tribu ! Rejoignez des groupes passionnés par des centres d’intérêt communs et vivez des expériences inoubliables.</p>
+      </div>
+    </div>
+    <div class="await-item event">
+      <div class="icon-bubble event"><i class="fas fa-calendar-alt"></i></div>
+      <div class="await-content">
+        <h3>Événements</h3>
+        <p>Soyez au cœur de l'action. Ne manquez aucun rassemblement, conférence ou fête qui anime notre communauté scolaire.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -178,12 +109,21 @@
     <div class="faq-list">
 
       <div class="faq-item" *ngFor="let item of faq; let i = index">
-        <div class="faq-question" (click)="toggleFAQ(i)">
-          {{ item.question }}
-          <span class="faq-icon">{{ item.open ? '−' : '+' }}</span>
+        <div class="faq-question"
+             role="button"
+             tabindex="0"
+             (click)="toggleFAQ(i)"
+             (keydown.enter)="toggleFAQ(i)"
+             (keydown.space)="toggleFAQ(i); $event.preventDefault()"
+             [attr.aria-expanded]="item.open"
+             [attr.aria-controls]="'faq-answer-' + i">
+          <span class="faq-label">{{ item.question }}</span>
+          <span class="faq-icon" aria-hidden="true">
+            <i [ngClass]="item.open ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'"></i>
+          </span>
         </div>
 
-        <div class="faq-answer" *ngIf="item.open">
+        <div class="faq-answer" *ngIf="item.open" [attr.id]="'faq-answer-' + i">
           <p>{{ item.answer }}</p>
         </div>
       </div>
@@ -192,33 +132,91 @@
   </div>
 </section>
 
-<section id="ateliers">
-  <h2>Ateliers</h2>
-  <div class="cards">
-    <div class="card"><h3>Atelier 1</h3><p>Description rapide...</p></div>
-    <div class="card"><h3>Atelier 2</h3><p>Description rapide...</p></div>
-    <div class="card"><h3>Atelier 3</h3><p>Description rapide...</p></div>
+<!-- Events Section: Formations & Soirées -->
+<section class="events-section">
+
+  <h2 class="title">Formations & Soirées</h2>
+
+  <div class="events-grid">
+
+    <div class="event-card" *ngFor="let e of events">
+
+      <img [src]="e.image" alt="event" class="event-image">
+
+      <h3 class="event-title">{{ e.title }}</h3>
+      <p class="event-date">{{ e.date }}</p>
+      <p class="event-description">{{ e.description }}</p>
+
+      <button class="reserve-btn">Réserver</button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- Testimonials / Témoignages -->
+<section class="temoignages-section">
+
+  <button class="label-btn">Ce Qu'ils Disent</button>
+  <h2>La Parole à Nos Participants</h2>
+
+  <div class="cards-container">
+
+    <div class="card" *ngFor="let t of temoignages">
+
+      <div class="avatar-wrapper">
+        <img [src]="t.image" class="avatar" alt="Avatar">
+      </div>
+
+      <h3>{{ t.name }}</h3>
+      <span class="role">{{ t.role }}</span>
+
+      <p class="message">
+        {{ t.message }}
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- TOPS SECTION -->
+<section class="tops-section">
+  <h2>Nos Tops</h2>
+  <div class="cards-container">
+    <div class="card" *ngFor="let item of tops">
+      <div class="card-tag">{{ item.category }}</div>
+      <img [src]="item.image" class="card-img" alt="Top Event">
+      <div class="card-content">
+        <div class="price">{{ item.price }}€</div>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+        <button class="btn-inscrire">S'inscrire</button>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="formations">
-  <h2>Formations</h2>
-  <div class="cards">
-    <div class="card"><h3>Formation 1</h3><p>Description rapide...</p></div>
-    <div class="card"><h3>Formation 2</h3><p>Description rapide...</p></div>
-    <div class="card"><h3>Formation 3</h3><p>Description rapide...</p></div>
-  </div>
-</section>
 
-<section id="clubs">
-  <h2>Clubs</h2>
-  <div class="cards">
-    <div class="card"><h3>Club 1</h3><p>Description rapide...</p></div>
-    <div class="card"><h3>Club 2</h3><p>Description rapide...</p></div>
-    <div class="card"><h3>Club 3</h3><p>Description rapide...</p></div>
-  </div>
-</section>
 
 <footer>
   © 2025 Evento — Tous droits réservés
 </footer>
+
+<!-- Floating action menu (FAB) -->
+<div class="floating-menu" [class.open]="floatingMenuOpen">
+  <button class="fab" (click)="toggleFloatingMenu()" aria-label="Ouvrir le menu">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <div class="fab-menu" *ngIf="floatingMenuOpen">
+    <a routerLink="/home" (click)="floatingMenuOpen=false">Accueil</a>
+    <a routerLink="/ateliers" (click)="floatingMenuOpen=false">Ateliers</a>
+    <a routerLink="/formations" (click)="floatingMenuOpen=false">Formations</a>
+    <a routerLink="/clubs" (click)="floatingMenuOpen=false">Clubs</a>
+    <a routerLink="/login" (click)="floatingMenuOpen=false">Se connecter</a>
+  </div>
+</div>

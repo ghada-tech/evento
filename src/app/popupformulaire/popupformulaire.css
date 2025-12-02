@@ -1,0 +1,96 @@
+/* Background overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+/* Popup box */
+.popup {
+  width: 420px;
+  background: rgba(255,255,255,0.95);
+  padding: 28px;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 700;
+}
+
+label {
+  font-weight: 600;
+  margin-top: 12px;
+  display: block;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  margin-top: 5px;
+  font-size: 15px;
+}
+
+textarea {
+  height: 80px;
+  resize: none;
+}
+
+.flex-row {
+  display: flex;
+  gap: 12px;
+}
+
+.flex-col {
+  flex: 1;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-submit {
+  background: #5b32c7;
+  color: white;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-submit:hover {
+  opacity: 0.9;
+}
+
+.btn-cancel {
+  background: #ccc;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-cancel:hover {
+  background: #bbb;
+}

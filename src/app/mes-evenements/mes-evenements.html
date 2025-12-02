@@ -1,0 +1,38 @@
+<div class="mes-evenements-container">
+
+  <div class="header">
+    <h2>Mes Événements</h2>
+    <button class="btn-create" (click)="openCreatePopup()">Créer un événement</button>
+  </div>
+
+  <div class="events-grid" *ngIf="events.length > 0; else emptyState">
+    <div class="event-card" *ngFor="let event of events">
+      <img *ngIf="event.photoUrl" [src]="event.photoUrl" alt="Photo événement" class="event-photo">
+      <div class="event-info">
+        <h3>{{ event.title }}</h3>
+        <p><strong>Lieu :</strong> {{ event.location }}</p>
+        <p><strong>Date :</strong> {{ event.dateStart }} - {{ event.dateEnd }}</p>
+        <p class="description">{{ event.description }}</p>
+      </div>
+      <div class="event-actions">
+        <button class="btn-edit" (click)="openEditPopup(event)">Modifier</button>
+        <button class="btn-delete" (click)="deleteEvent(event.id)">Supprimer</button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #emptyState>
+    <div class="empty-state">
+      <p>Vous n'avez encore créé aucun événement.</p>
+      <button class="btn-create" (click)="openCreatePopup()">Créer votre premier événement</button>
+    </div>
+  </ng-template>
+
+  <app-popupformulaire
+    *ngIf="showPopup"
+    [eventData]="editEvent"
+    (close)="closePopup()"
+    (save)="saveEvent($event)">
+  </app-popupformulaire>
+
+</div>

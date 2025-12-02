@@ -1,0 +1,39 @@
+<div class="overlay">
+  <div class="popup">
+
+    <h2>Créer un événement</h2>
+
+    <form (ngSubmit)="submitForm()">
+
+      <label>Titre</label>
+      <input type="text" [(ngModel)]="eventData.title" name="title" required />
+
+      <label>Lieu</label>
+      <input type="text" [(ngModel)]="eventData.location" name="location" required />
+
+      <div class="flex-row">
+        <div class="flex-col">
+          <label>Date début</label>
+          <input type="date" [(ngModel)]="eventData.dateStart" name="dateStart" required />
+        </div>
+        <div class="flex-col">
+          <label>Date fin</label>
+          <input type="date" [(ngModel)]="eventData.dateEnd" name="dateEnd" required />
+        </div>
+      </div>
+
+      <label>Description</label>
+      <textarea [(ngModel)]="eventData.description" name="description"></textarea>
+
+      <label>Photo</label>
+      <input type="file" (change)="onPhotoSelected($event)" accept="image/*" />
+
+      <div class="buttons">
+        <button type="submit" class="btn-submit">Créer</button>
+        <button type="button" class="btn-cancel" (click)="closePopup()">Annuler</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

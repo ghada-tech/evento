@@ -1,0 +1,108 @@
+<header class="site-header">
+  <div class="brand">
+    <img src="assets/images/logo.png" alt="Logo" style="height:32px;width:32px;border-radius:8px;margin-right:8px;vertical-align:middle;">
+    <span style="font-size:20px;font-weight:800;vertical-align:middle;">Organisateur</span>
+  </div>
+
+  <nav class="nav-desktop">
+    <a routerLink="/home">Accueil</a>
+    <a routerLink="/create">Créer</a>
+    <a routerLink="/contact">Contact</a>
+  </nav>
+
+  <div class="header-actions">
+    <button class="btn-login">Connexion</button>
+    <button class="hamburger" aria-label="Menu" (click)="toggleNav()" [attr.aria-expanded]="navOpen">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile nav overlay -->
+<div class="mobile-nav" *ngIf="navOpen">
+  <a routerLink="/home" (click)="closeNav()">Accueil</a>
+  <a routerLink="/create" (click)="closeNav()">Créer</a>
+  <a routerLink="/contact" (click)="closeNav()">Contact</a>
+</div>
+
+<section class="hero-section" style="background-image: url('/assets/fullstak.jpg');">
+  <div class="hero-card">
+    <h1>Prêt à organiser ?</h1>
+    <p>Donnez vie à vos idées, créez votre événement dès maintenant.</p>
+    <button class="btn-create" (click)="openForm()">Créer</button>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="faq-section">
+  <h2>Questions Fréquentes</h2>
+
+  <div class="faq-container">
+
+    <!-- LEFT IMAGE -->
+    <div class="faq-image">
+      <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800" alt="FAQ Image">
+    </div>
+
+    <!-- RIGHT FAQ LIST -->
+    <div class="faq-list">
+
+      <div class="faq-item" *ngFor="let item of faq; let i = index">
+        <div class="faq-question"
+             role="button"
+             tabindex="0"
+             (click)="toggleFAQ(i)"
+             (keydown.enter)="toggleFAQ(i)"
+             (keydown.space)="toggleFAQ(i); $event.preventDefault()"
+             [attr.aria-expanded]="item.open"
+             [attr.aria-controls]="'faq-answer-' + i">
+          <span class="faq-label">{{ item.question }}</span>
+          <span class="faq-icon" aria-hidden="true">
+            <i [ngClass]="item.open ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'"></i>
+          </span>
+        </div>
+
+        <div class="faq-answer" *ngIf="item.open" [attr.id]="'faq-answer-' + i">
+          <p>{{ item.answer }}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Popup formulaire -->
+<app-popupformulaire *ngIf="showPopup" (close)="closeForm()"></app-popupformulaire>
+
+<section class="reviews-section">
+  <h2 class="title">Avis</h2>
+  <div class="reviews-grid">
+    <div class="review-card" *ngFor="let avis of avisList">
+      <div class="stars">★★★★★</div>
+      <p class="text">{{ avis.text }}</p>
+      <h4 class="name">{{ avis.name }}</h4>
+    </div>
+  </div>
+</section>
+
+
+<!---->
+<div class="options">
+  <div
+    class="option"
+    *ngFor="let item of slides; let i = index"
+    [class.active]="i === currentIndex"
+    [style.--optionImage]="'url(' + item.image + ')'"
+    (click)="setActive(i)"
+  >
+    <div class="label">
+      <div class="icon"><i [class]="item.icon"></i></div>
+      <div class="info">
+        <div class="main">{{ item.title }}</div>
+        <div class="sub">{{ item.subtitle }}</div>
+      </div>
+    </div>
+  </div>
+</div>
