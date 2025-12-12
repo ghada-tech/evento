@@ -12,17 +12,22 @@
 
   <div class="header-actions">
     <button class="btn-user" (click)="openUserPopup()">Qui êtes-vous ?</button>
-    <button class="hamburger" aria-label="Menu" (click)="toggleNav()" [attr.aria-expanded]="navOpen" aria-controls="mobile-navigation">
+    <button class="hamburger" aria-label="Menu" (click)="toggleNav()" [attr.aria-expanded]="navOpen">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
     </button>
   </div>
 
-  <!-- Mobile nav overlay -->
-  <div class="mobile-nav" id="mobile-navigation" *ngIf="navOpen" role="dialog" aria-modal="true">
-    <div class="mobile-nav-panel">
-    <button class="mobile-close" aria-label="Fermer le menu" (click)="closeNav()"><i class="fa-solid fa-xmark"></i></button>
+  <!-- Mobile nav -->
+  <div class="mobile-nav" *ngIf="navOpen" (click)="closeNav()">
+    <div class="mobile-nav-panel" (click)="$event.stopPropagation()">
+      <button class="mobile-close" (click)="closeNav()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
       <a routerLink="/home" (click)="closeNav()">Accueil</a>
       <a routerLink="/ateliers" (click)="closeNav()">Ateliers</a>
       <a routerLink="/formations" (click)="closeNav()">Formations</a>
@@ -37,14 +42,15 @@
     <h3>Qui êtes-vous ?</h3>
     <p>Choisissez votre profil pour continuer</p>
     <div class="choice-buttons">
-      <a class="btn choice-btn" routerLink="/login" (click)="closeUserChoice()">Utilisateur</a>
-      <a class="btn choice-btn" routerLink="/login-organisateur" (click)="closeUserChoice()">Organisateur</a>
+      <a class="choice-btn" routerLink="/login" (click)="closeUserChoice()">Utilisateur</a>
+      <a class="choice-btn" routerLink="/login-organisateur" (click)="closeUserChoice()">Organisateur</a>
     </div>
     <button class="close-btn" (click)="closeUserChoice()">Annuler</button>
   </div>
 </div>
 
-<div class="hero">
+<!-- HERO SECTION -->
+<section class="hero">
   <div class="hero-text">
     <h4>Votre Portail</h4>
     <h1>L'Épicentre de la Vie Scolaire</h1>
@@ -53,39 +59,78 @@
       avec nos ateliers, formations et clubs scolaires.
     </p>
   </div>
+  <img src="https://picsum.photos/600/400?school" alt="Campus Life" />
+</section>
 
-  <img src="https://picsum.photos/600/400?school" alt="School" />
-</div>
-<!-- CE QUI VOUS ATTEND SECTION -->
-<section class="what-awaits themed-section">
+<!-- CE QUI VOUS ATTEND -->
+<section class="themed-section">
   <div class="section-header">
     <span class="section-label">À Découvrir</span>
     <h2>Ce Qui Vous Attend</h2>
   </div>
   <div class="awaits-list">
-    <div class="await-item atelier">
-      <div class="icon-bubble atelier"><i class="fas fa-paint-brush"></i></div>
+    <div class="await-item">
+      <div class="icon-bubble atelier">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72Z"/>
+          <path d="m14 7 3 3"/>
+          <path d="M5 6v4"/>
+          <path d="M19 14v4"/>
+          <path d="M10 2v2"/>
+          <path d="M7 8H3"/>
+          <path d="M21 16h-4"/>
+          <path d="M11 3H9"/>
+        </svg>
+      </div>
       <div class="await-content">
         <h3>Ateliers</h3>
         <p>Libérez votre potentiel créatif avec nos sessions pratiques. Apprenez de nouvelles compétences dans une ambiance conviviale et stimulante.</p>
       </div>
     </div>
-    <div class="await-item formation">
-      <div class="icon-bubble formation"><i class="fas fa-graduation-cap"></i></div>
+
+    <div class="await-item">
+      <div class="icon-bubble formation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+        </svg>
+      </div>
       <div class="await-content">
         <h3>Formations</h3>
         <p>Perfectionnez votre savoir-faire. Nos programmes sont conçus pour vous propulser vers l'excellence académique et professionnelle.</p>
       </div>
     </div>
-    <div class="await-item club">
-      <div class="icon-bubble club"><i class="fas fa-users"></i></div>
+
+    <div class="await-item">
+      <div class="icon-bubble club">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
       <div class="await-content">
         <h3>Clubs</h3>
-        <p>Trouvez votre tribu ! Rejoignez des groupes passionnés par des centres d’intérêt communs et vivez des expériences inoubliables.</p>
+        <p>Trouvez votre tribu ! Rejoignez des groupes passionnés par des centres d'intérêt communs et vivez des expériences inoubliables.</p>
       </div>
     </div>
-    <div class="await-item event">
-      <div class="icon-bubble event"><i class="fas fa-calendar-alt"></i></div>
+
+    <div class="await-item">
+      <div class="icon-bubble event">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+          <line x1="16" x2="16" y1="2" y2="6"/>
+          <line x1="8" x2="8" y1="2" y2="6"/>
+          <line x1="3" x2="21" y1="10" y2="10"/>
+          <path d="M8 14h.01"/>
+          <path d="M12 14h.01"/>
+          <path d="M16 14h.01"/>
+          <path d="M8 18h.01"/>
+          <path d="M12 18h.01"/>
+          <path d="M16 18h.01"/>
+        </svg>
+      </div>
       <div class="await-content">
         <h3>Événements</h3>
         <p>Soyez au cœur de l'action. Ne manquez aucun rassemblement, conférence ou fête qui anime notre communauté scolaire.</p>
@@ -94,20 +139,41 @@
   </div>
 </section>
 
+<!-- EVENTS SECTION -->
+<section class="events-section">
+  <h2 class="title">Formations & Soirées</h2>
+  <div class="events-grid">
+    <div class="event-card" *ngFor="let e of events">
+      <img [src]="e.image" [alt]="e.title" class="event-image">
+      <h3 class="event-title">{{ e.title }}</h3>
+      <p class="event-date">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 6px;">
+          <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+          <line x1="16" x2="16" y1="2" y2="6"/>
+          <line x1="8" x2="8" y1="2" y2="6"/>
+          <line x1="3" x2="21" y1="10" y2="10"/>
+        </svg>
+        {{ e.date }}
+      </p>
+      <p class="event-description">{{ e.description }}</p>
+      <button class="reserve-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+        Réserver
+      </button>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ SECTION -->
 <section class="faq-section">
   <h2>Questions Fréquentes</h2>
-
   <div class="faq-container">
-
-    <!-- LEFT IMAGE -->
     <div class="faq-image">
-      <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800" alt="FAQ Image">
+      <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800" alt="FAQ">
     </div>
-
-    <!-- RIGHT FAQ LIST -->
     <div class="faq-list">
-
       <div class="faq-item" *ngFor="let item of faq; let i = index">
         <div class="faq-question"
              role="button"
@@ -115,72 +181,36 @@
              (click)="toggleFAQ(i)"
              (keydown.enter)="toggleFAQ(i)"
              (keydown.space)="toggleFAQ(i); $event.preventDefault()"
-             [attr.aria-expanded]="item.open"
-             [attr.aria-controls]="'faq-answer-' + i">
-          <span class="faq-label">{{ item.question }}</span>
-          <span class="faq-icon" aria-hidden="true">
-            <i [ngClass]="item.open ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'"></i>
+             [attr.aria-expanded]="item.open">
+          <span>{{ item.question }}</span>
+          <span class="faq-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
           </span>
         </div>
-
-        <div class="faq-answer" *ngIf="item.open" [attr.id]="'faq-answer-' + i">
+        <div class="faq-answer" *ngIf="item.open">
           <p>{{ item.answer }}</p>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- Events Section: Formations & Soirées -->
-<section class="events-section">
-
-  <h2 class="title">Formations & Soirées</h2>
-
-  <div class="events-grid">
-
-    <div class="event-card" *ngFor="let e of events">
-
-      <img [src]="e.image" alt="event" class="event-image">
-
-      <h3 class="event-title">{{ e.title }}</h3>
-      <p class="event-date">{{ e.date }}</p>
-      <p class="event-description">{{ e.description }}</p>
-
-      <button class="reserve-btn">Réserver</button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- Testimonials / Témoignages -->
+<!-- TÉMOIGNAGES -->
 <section class="temoignages-section">
-
-  <button class="label-btn">Ce Qu'ils Disent</button>
+  <span class="label-btn">Ce Qu'ils Disent</span>
   <h2>La Parole à Nos Participants</h2>
-
   <div class="cards-container">
-
     <div class="card" *ngFor="let t of temoignages">
-
       <div class="avatar-wrapper">
-        <img [src]="t.image" class="avatar" alt="Avatar">
+        <img [src]="t.image" class="avatar" [alt]="t.name">
       </div>
-
       <h3>{{ t.name }}</h3>
       <span class="role">{{ t.role }}</span>
-
-      <p class="message">
-        {{ t.message }}
-      </p>
-
+      <p class="message">{{ t.message }}</p>
     </div>
-
   </div>
-
 </section>
 
 <!-- TOPS SECTION -->
@@ -188,8 +218,8 @@
   <h2>Nos Tops</h2>
   <div class="cards-container">
     <div class="card" *ngFor="let item of tops">
-      <div class="card-tag">{{ item.category }}</div>
-      <img [src]="item.image" class="card-img" alt="Top Event">
+      <span class="card-tag">{{ item.category }}</span>
+      <img [src]="item.image" class="card-img" [alt]="item.title">
       <div class="card-content">
         <div class="price">{{ item.price }}€</div>
         <h3>{{ item.title }}</h3>
@@ -200,18 +230,13 @@
   </div>
 </section>
 
-
-
+<!-- FOOTER -->
 <footer>
   © 2025 Evento — Tous droits réservés
 </footer>
 
-<!-- Floating action menu (FAB) -->
-<div class="floating-menu" [class.open]="floatingMenuOpen">
-  <button class="fab" (click)="toggleFloatingMenu()" aria-label="Ouvrir le menu">
-    <i class="fa-solid fa-bars"></i>
-  </button>
-
+<!-- FAB MENU -->
+<div class="floating-menu">
   <div class="fab-menu" *ngIf="floatingMenuOpen">
     <a routerLink="/home" (click)="floatingMenuOpen=false">Accueil</a>
     <a routerLink="/ateliers" (click)="floatingMenuOpen=false">Ateliers</a>
@@ -219,4 +244,11 @@
     <a routerLink="/clubs" (click)="floatingMenuOpen=false">Clubs</a>
     <a routerLink="/login" (click)="floatingMenuOpen=false">Se connecter</a>
   </div>
+  <button class="fab" (click)="toggleFloatingMenu()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="4" x2="20" y1="12" y2="12"/>
+      <line x1="4" x2="20" y1="6" y2="6"/>
+      <line x1="4" x2="20" y1="18" y2="18"/>
+    </svg>
+  </button>
 </div>

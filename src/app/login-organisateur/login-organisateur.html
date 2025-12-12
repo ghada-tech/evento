@@ -1,56 +1,41 @@
-
 <div class="container" id="container">
   <div class="form-container sign-up">
     <form>
-      <h1>Create Account</h1>
-      <div class="social-icons">
-        <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-        <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-        <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-      </div>
-      <span>or use your email for registration</span>
-      <input type="text" placeholder="Name">
-      <input type="email" placeholder="Email">
-      <input type="text" placeholder="Nom de l’organisation / club / établissement">
-      <input type="tel" placeholder="Numéro de téléphone">
-      <input type="password" placeholder="Password">
-      <input type="password" placeholder="Confirm Password">
-
-      <button type="button">Sign Up</button>
+      <h1>Créer votre espace</h1>
+      <span>Inscrivez-vous pour gérer vos événements</span>
+      <input type="text" placeholder="Nom complet" required autocomplete="name">
+      <input type="email" placeholder="Email professionnel" required autocomplete="email">
+      <input type="text" placeholder="Nom de l'organisation" required autocomplete="organization">
+      <input type="tel" placeholder="Numéro de téléphone" required autocomplete="tel">
+      <input type="password" placeholder="Mot de passe" required autocomplete="new-password">
+      <input type="password" placeholder="Confirmer le mot de passe" required autocomplete="new-password">
+      <button type="submit">Créer mon espace</button>
     </form>
   </div>
 
   <div class="form-container sign-in">
     <form>
-      <h1>Sign In</h1>
-      <div class="social-icons">
-        <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-        <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-        <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-      </div>
-      <span>or use your email password</span>
-      <input type="email" placeholder="Email">
-      <input type="password" placeholder="Password">
-      <a href="#">Forget Your Password?</a>
-      <button type="button">Sign In</button>
+      <h1>Espace organisateur</h1>
+      <span>Connectez-vous à votre tableau de bord</span>
+      <input type="email" placeholder="Email professionnel" required autocomplete="email">
+      <input type="password" placeholder="Mot de passe" required autocomplete="current-password">
+      <a href="#">Mot de passe oublié ?</a>
+      <button type="submit">Accéder à mon espace</button>
+      <p class="signup-link">Pas encore inscrit ? <a href="#" id="register-link">Créer un compte</a></p>
     </form>
   </div>
 
   <div class="toggle-container">
     <div class="toggle">
       <div class="toggle-panel toggle-left">
-        <h1>Hello Organisateur!</h1>
-        <p>Avec Evento, chaque événement devient une expérience unique. Créez, animez et gérez en toute confiance</p>
-        <button class="hidden" id="login">Sign In</button>
+        <h1>Bienvenue sur votre espace</h1>
+        <p>Connectez-vous pour gérer vos événements, suivre les inscriptions et créer des expériences mémorables pour votre communauté</p>
+        <button class="hidden" id="login">Se connecter</button>
       </div>
       <div class="toggle-panel toggle-right">
-        <h1>Votre talent mérite la meilleure plateforme 🎪</h1>
-        <p>Prêt·e à vivre des expériences inoubliables ?
-            Connectez-vous pour gérer vos événements en toute simplicité : créez, modifiez et suivez vos participants depuis votre espace organisateur 🎓✨
-        </p>
-        <button class="hidden" id="register">Sign Up</button>
+        <h1>Devenez organisateur Evento</h1>
+        <p>Créez et gérez vos événements universitaires en toute simplicité. Accédez à des outils puissants pour transformer vos idées en expériences inoubliables</p>
+        <button class="hidden" id="register">Créer un compte</button>
       </div>
     </div>
   </div>
