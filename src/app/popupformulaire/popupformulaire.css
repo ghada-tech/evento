@@ -1,96 +1,412 @@
-/* Background overlay */
+/* ============================================
+   POPUP FORMULAIRE - DESIGN MODERNE
+============================================ */
+
+/* Background overlay avec animation */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  backdrop-filter: blur(6px);
-  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px) saturate(180%);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
+  background-color: rgba(15, 23, 42, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2000;
+  animation: overlayFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 20px;
 }
 
-/* Popup box */
+@keyframes overlayFadeIn {
+  from { 
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+  to { 
+    opacity: 1;
+    backdrop-filter: blur(12px) saturate(180%);
+  }
+}
+
+/* Popup box avec effet 3D */
 .popup {
-  width: 420px;
-  background: rgba(255,255,255,0.95);
-  padding: 28px;
-  border-radius: 20px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from { transform: scale(0.92); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
-}
-
-h2 {
-  margin-bottom: 20px;
-  text-align: center;
-  font-weight: 700;
-}
-
-label {
-  font-weight: 600;
-  margin-top: 12px;
-  display: block;
-}
-
-input, textarea {
   width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  margin-top: 5px;
+  max-width: 520px;
+  background: white;
+  padding: 40px;
+  border-radius: 32px;
+  box-shadow: 
+    0 40px 120px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  animation: popupEntry 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+/* Barre de gradient en haut */
+.popup::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #a855f7, #6366f1);
+  background-size: 200% 100%;
+  animation: gradientShift 3s linear infinite;
+}
+
+/* Effet de lumière subtil */
+.popup::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08), transparent 60%);
+  pointer-events: none;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+@keyframes popupEntry {
+  0% { 
+    transform: scale(0.9) translateY(30px) rotateX(10deg);
+    opacity: 0;
+  }
+  100% { 
+    transform: scale(1) translateY(0) rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+/* Titre du formulaire */
+h2 {
+  margin-bottom: 32px;
+  text-align: center;
+  font-weight: 900;
+  font-size: 32px;
+  background: linear-gradient(135deg, #0f172a 0%, #6366f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
+}
+
+/* Labels avec style moderne */
+label {
+  font-weight: 700;
+  margin-top: 20px;
+  display: block;
+  color: #1e293b;
   font-size: 15px;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+  letter-spacing: -0.01em;
+}
+
+/* Inputs et textarea avec effets */
+input:not([type="file"]), 
+textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 2px solid #e2e8f0;
+  margin-top: 0;
+  font-size: 15px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #f8fafc;
+  color: #1e293b;
+  font-family: inherit;
+  position: relative;
+  z-index: 1;
+}
+
+input:not([type="file"]):focus, 
+textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+  background: white;
+  box-shadow: 
+    0 0 0 4px rgba(99, 102, 241, 0.1),
+    0 8px 24px rgba(99, 102, 241, 0.15);
+  transform: translateY(-2px);
+}
+
+input:not([type="file"]):hover,
+textarea:hover {
+  border-color: #cbd5e1;
+  background: white;
 }
 
 textarea {
-  height: 80px;
-  resize: none;
+  height: 100px;
+  resize: vertical;
+  min-height: 80px;
+  max-height: 200px;
 }
 
+/* Input file stylisé */
+input[type="file"] {
+  width: 100%;
+  padding: 16px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 14px;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 14px;
+  color: #64748b;
+  position: relative;
+  z-index: 1;
+}
+
+input[type="file"]:hover {
+  border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.05);
+  transform: translateY(-2px);
+}
+
+input[type="file"]:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+input[type="file"]::file-selector-button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 12px;
+  transition: all 0.3s;
+  font-size: 13px;
+}
+
+input[type="file"]::file-selector-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* Flex row pour dates */
 .flex-row {
   display: flex;
-  gap: 12px;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
 }
 
 .flex-col {
   flex: 1;
 }
 
+/* Conteneur des boutons */
 .buttons {
-  margin-top: 20px;
+  margin-top: 32px;
   display: flex;
   justify-content: space-between;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
 }
 
+/* Bouton Créer - Style principal */
 .btn-submit {
-  background: #5b32c7;
+  flex: 1;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   color: white;
-  padding: 10px 22px;
+  padding: 16px 32px;
   border: none;
-  border-radius: 10px;
+  border-radius: 14px;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 800;
+  font-size: 16px;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.02em;
+}
+
+.btn-submit::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-submit:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .btn-submit:hover {
-  opacity: 0.9;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(99, 102, 241, 0.45);
 }
 
+.btn-submit:active {
+  transform: translateY(-1px);
+}
+
+/* Bouton Annuler - Style secondaire */
 .btn-cancel {
-  background: #ccc;
-  padding: 10px 22px;
-  border: none;
-  border-radius: 10px;
+  flex: 1;
+  background: white;
+  color: #64748b;
+  padding: 16px 32px;
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
   cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-cancel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #f1f5f9;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 .btn-cancel:hover {
-  background: #bbb;
+  border-color: #cbd5e1;
+  color: #1e293b;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.btn-cancel:hover::before {
+  opacity: 1;
+}
+
+.btn-cancel:active {
+  transform: translateY(0);
+}
+
+/* Placeholder styling */
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+/* Animations d'entrée pour les champs */
+input:not([type="file"]),
+textarea,
+input[type="file"] {
+  animation: fieldSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+label:nth-of-type(1) ~ input { animation-delay: 0.1s; }
+label:nth-of-type(2) ~ input { animation-delay: 0.15s; }
+.flex-row { animation-delay: 0.2s; }
+label:nth-last-of-type(2) ~ textarea { animation-delay: 0.25s; }
+label:last-of-type ~ input[type="file"] { animation-delay: 0.3s; }
+.buttons { animation-delay: 0.35s; }
+
+@keyframes fieldSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .popup {
+    padding: 32px 24px;
+    border-radius: 28px;
+    max-width: 100%;
+  }
+
+  h2 {
+    font-size: 28px;
+    margin-bottom: 28px;
+  }
+
+  .flex-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  input:not([type="file"]), 
+  textarea {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .btn-submit,
+  .btn-cancel {
+    width: 100%;
+    padding: 14px 28px;
+    font-size: 15px;
+  }
+}
+
+/* États de validation (optionnel) */
+input:not([type="file"]):invalid:not(:placeholder-shown),
+textarea:invalid:not(:placeholder-shown) {
+  border-color: #ef4444;
+}
+
+input:not([type="file"]):valid:not(:placeholder-shown),
+textarea:valid:not(:placeholder-shown) {
+  border-color: #10b981;
+}
+
+/* Animation de focus pour les labels */
+label {
+  animation: labelFadeIn 0.4s ease backwards;
+}
+
+label:nth-of-type(1) { animation-delay: 0.05s; }
+label:nth-of-type(2) { animation-delay: 0.1s; }
+label:nth-of-type(3) { animation-delay: 0.15s; }
+label:nth-of-type(4) { animation-delay: 0.2s; }
+label:nth-of-type(5) { animation-delay: 0.25s; }
+
+@keyframes labelFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

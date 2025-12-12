@@ -20,8 +20,7 @@
   left: 0;
   right: 0;
   height: 400px;
-  background: linear-gradient(135deg, #a8c0ff 0%, #c5d4f7 50%, #e9d5ff 100%);
-  z-index: 0;
+background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);  z-index: 0;
   opacity: 1;
 }
 
@@ -60,7 +59,7 @@
   padding: 80px 20px 60px;
   animation: fadeInDown 0.8s ease;
 }
-
+*
 .title {
   font-size: clamp(36px, 6vw, 64px);
   font-weight: 800;
@@ -75,7 +74,7 @@
 }
 
 .title .gradient {
-  background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #fb7185 100%);
+  background: linear-gradient(135deg, #723ded 0%, #783fb0 50%, #fb7185 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

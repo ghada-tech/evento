@@ -6,7 +6,7 @@
 
   <nav class="nav-desktop">
     <a routerLink="/home" routerLinkActive="active">Accueil</a>
-    <a routerLink="/create" routerLinkActive="active">Créer</a>
+    <a routerLink="/create" routerLinkActive="active">mes événements</a>
     <a routerLink="/contact" routerLinkActive="active">Contact</a>
   </nav>
 
@@ -109,3 +109,4 @@
 
 <!-- POPUP FORMULAIRE -->
 <app-popupformulaire *ngIf="showPopup" (close)="closeForm()"></app-popupformulaire>
+<app-footer></app-footer>

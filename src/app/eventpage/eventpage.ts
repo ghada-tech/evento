@@ -1,6 +1,7 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from '../footer/footer';
 
 export interface Event {
   title: string;
@@ -20,7 +21,7 @@ export interface Event {
 @Component({
   selector: 'app-eventpage',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,FooterComponent],
   templateUrl: './eventpage.html',
   styleUrls: ['./eventpage.css']
 })

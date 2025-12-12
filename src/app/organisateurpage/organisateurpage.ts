@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PopupformulaireComponent } from '../popupformulaire/popupformulaire';
+import { FooterComponent } from '../footer/footer';
 
 @Component({
   selector: 'app-organisateurpage',
   standalone: true,
-  imports: [CommonModule, PopupformulaireComponent],
+  imports: [CommonModule, PopupformulaireComponent,FooterComponent],
   templateUrl: './organisateurpage.html',
   styleUrls: ['./organisateurpage.css'],
 })

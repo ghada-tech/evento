@@ -6,7 +6,7 @@ import { HomepageComponent } from './homepage/homepage';
 import { OrganisateurpageComponent } from './organisateurpage/organisateurpage';
 import { MesEvenementsComponent } from './mes-evenements/mes-evenements';
 import { EventpageComponent } from './eventpage/eventpage';
-
+import { FooterComponent } from './footer/footer';
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 
@@ -21,4 +21,5 @@ export const routes: Routes = [
   // Espace organisateur
   { path: 'organisateur', component: OrganisateurpageComponent },
   { path: 'mes-evenements', component: MesEvenementsComponent },
+  {path : 'footer', component : FooterComponent},
 ];
